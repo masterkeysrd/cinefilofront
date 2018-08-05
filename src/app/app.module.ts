@@ -46,6 +46,7 @@ import { EditShowComponent } from './components/dashboard/show/edit-show/edit-sh
 import { ButtonBackComponent } from './components/dashboard/util/button-back/button-back.component';
 import { IndexComponent } from './components/page/index/index.component';
 import { HeaderComponent } from './components/page/header/header.component';
+import { MovieGroupComponent } from './components/page/movie-group/movie-group.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { HeaderComponent } from './components/page/header/header.component';
     EditShowComponent,
     ButtonBackComponent,
     IndexComponent,
-    HeaderComponent
+    HeaderComponent,
+    MovieGroupComponent
   ],
   imports: [
     BrowserModule,

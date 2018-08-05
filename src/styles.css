@@ -115,10 +115,23 @@ body {
   background-color: #34495e;
 }
 
-.site-header nav a {
+.site-header .nav-link {
   color: #fff !important;
+  padding: 10px 50px !important;
+  font-size: 1.2em;
+}
+
+.site-header .nav-link:hover {
+  background-color: #ad001c;
+
 }
 
 .site-header nav {
   background-color: #CD0A0A!important;
+  padding: 0;
+}
+
+.site-img {
+  width: 20%;
+  margin: 15px;
 }
