@@ -1,0 +1,34 @@
+<div *ngIf="!isLoading">
+  <app-option-header title="{{title}}">
+    <button class="btn btn-outline-primary" routerLink="add">Nueva {{title}} <i class="fa fa-plus"></i></button>
+  </app-option-header>
+
+
+  <table class="table table-sm table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th class="align-middle" scope="col" style="width: 35%">Nombre</th>
+      <th class="align-middle" scope="col" style="width: 15%">Genero</th>
+      <th class="align-middle" scope="col" style="width: 10%">Idioma</th>
+      <th class="align-middle" scope="col" style="width: 20%">Director</th>
+      <th class="align-middle" scope="col" style="width: 8%">Fecha Estreno</th>
+      <th class="align-middle" scope="col" style="width: 10.5%"></th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let movie of movies">
+    <tr>
+      <td>{{movie.name}}</td>
+      <td>{{movie.genre.name}}</td>
+      <td>{{movie.language.name}}</td>
+      <td>{{movie.director}}</td>
+      <td>{{movie.premiereDate}}</td>
+      <td>
+        <app-button-view [routerLink]="['view', movie.id]" class="mr-1"></app-button-view>
+        <app-button-edit [routerLink]="['edit', movie.id]" class="mr-1"></app-button-edit>
+        <app-button-erase (click)="onDelete(movie)"></app-button-erase>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<app-loader [isLoading]="isLoading"></app-loader>

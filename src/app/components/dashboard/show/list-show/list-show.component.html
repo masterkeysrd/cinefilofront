@@ -1,0 +1,39 @@
+<div *ngIf="!isLoading">
+  <app-option-header title="Funciones">
+    <button class="btn btn-outline-primary" routerLink="add">Nueva Funciones <i class="fa fa-plus"></i></button>
+    <select class="form-control">
+      <option>Hola</option>
+    </select>
+  </app-option-header>
+
+
+  <table class="table table-sm table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th class="align-middle" scope="col" style="width: 10%">Pelicula</th>
+      <th class="align-middle" scope="col" style="width: 10%">Cine</th>
+      <th class="align-middle" scope="col" style="width: 10%">Sala</th>
+      <th class="align-middle" scope="col" style="width: 10%">Fecha Desde</th>
+      <th class="align-middle" scope="col" style="width: 10%">Fecha Hasta</th>
+      <th class="align-middle" scope="col" style="width: 10%">Hora</th>
+      <th class="align-middle" scope="col" style="width: 10.5%"></th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let s of shows">
+    <tr>
+      <td>{{s.movie.name}}</td>
+      <td>{{s.room.cinema.name}}</td>
+      <td>{{s.room.name}}</td>
+      <td>{{s.datefrom}}</td>
+      <td>{{s.dateto}}</td>
+      <td>{{s.startHour}}</td>
+      <td>
+        <app-button-view [routerLink]="['view', s.id]" class="mr-1"></app-button-view>
+        <app-button-edit [routerLink]="['edit', s.id]" class="mr-1"></app-button-edit>
+        <app-button-erase (click)="onDelete(s)"></app-button-erase>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<app-loader [isLoading]="isLoading"></app-loader>

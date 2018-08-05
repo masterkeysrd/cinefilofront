@@ -1,0 +1,27 @@
+<div *ngIf="!isLoading">
+
+  <app-option-header title="{{title}}">
+    <app-button-create routerLink="add">Nuevo {{title}} </app-button-create>
+  </app-option-header>
+
+  <br/>
+<table class="table table-sm table-bordered table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th style="width: 90%">Nombre</th>
+    <th style="width: 7.5%"></th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let language of languages">
+  <tr>
+    <td>{{language.name}}</td>
+    <td>
+      <app-button-edit [routerLink]="['edit', language.id]" class="mr-2"></app-button-edit>
+      <app-button-erase (onClickEvent)="onDelete(language)"></app-button-erase>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+<app-loader [isLoading]="isLoading"></app-loader>

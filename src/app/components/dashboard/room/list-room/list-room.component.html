@@ -1,0 +1,28 @@
+<div *ngIf="!isLoading">
+  <app-option-header title="{{title}}">
+    <button class="btn btn-outline-primary" routerLink="add">Nueva {{title}} <i class="fa fa-plus"></i></button>
+  </app-option-header>
+
+
+  <table class="table table-sm table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th class="align-middle" scope="col" style="width: 40%">Cine</th>
+      <th class="align-middle" scope="col" style="width: 40%">Descripcion</th>
+      <th class="align-middle" scope="col" style="width: 10.5%"></th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let r of rooms">
+    <tr>
+      <td>{{r.cinema.name}}</td>
+      <td>{{r.name}}</td>
+      <td>
+        <app-button-view [routerLink]="['view', r.id]" class="mr-1"></app-button-view>
+        <app-button-edit [routerLink]="['edit', r.id]" class="mr-1"></app-button-edit>
+        <app-button-erase (click)="onDelete(r)"></app-button-erase>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<app-loader [isLoading]="isLoading"></app-loader>

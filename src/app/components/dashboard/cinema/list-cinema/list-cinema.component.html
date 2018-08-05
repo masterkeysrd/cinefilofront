@@ -1,0 +1,29 @@
+<div *ngIf="!isLoading">
+  <app-option-header title="Cines">
+    <app-button-create routerLink="add">Crear Cine </app-button-create>
+  </app-option-header>
+  <table class="table table-sm table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th style="width: 20%">Nombre</th>
+      <th style="width: 40%">Descripcion</th>
+      <th style="width: 10%">Telefono</th>
+      <th style="width: 22.5%">Direccion</th>
+      <th style="width: 7.5%"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of cinemas">
+      <td>{{c.name}}</td>
+      <td>{{c.description}}</td>
+      <td>{{c.phone}}</td>
+      <td>{{c.address}}</td>
+      <td>
+        <app-button-edit class="mr-1" [routerLink]="['edit', c.id]"></app-button-edit>
+        <app-button-erase (onClickEvent)="onDelete(c)"></app-button-erase>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<app-loader [isLoading]="isLoading"></app-loader>

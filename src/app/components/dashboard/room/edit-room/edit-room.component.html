@@ -1,0 +1,9 @@
+<app-option-header title="Crear Editar"></app-option-header>
+<form>
+  <app-form-input-dropdown [(ngModel)]="room.cinema" [list]="cinemas" name="cinema">Cine</app-form-input-dropdown>
+  <app-form-input [(ngModel)]="room.name" name="name" placeholder="Indroduzca el nombre de la sala">Nombre</app-form-input>
+  <div class="form-group">
+    <app-button-save (onClickEvent)="onSave()" class="mr-2">Guardar </app-button-save>
+    <app-button-cancel (onClickEvent)="onCancel()">Cancelar </app-button-cancel>
+  </div>
+</form>

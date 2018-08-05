@@ -1,0 +1,36 @@
+<div *ngIf="!isLoading">
+  <app-option-header title="{{title}}"></app-option-header>
+
+  <form>
+    <app-form-input name="title" [(ngModel)]="movie.name" placeholder="Indroduzca el titulo">Titulo</app-form-input>
+    <app-form-input-dropdown [(ngModel)]="movie.genre" [list]="genres" name="genre">Genero</app-form-input-dropdown>
+    <app-text-area  name="synopsis" [(ngModel)]="movie.synopsis" placeholder="Indroduzca el sinopsis.">Sinopsis</app-text-area>
+    <app-form-input name="mainActors" [(ngModel)]="movie.mainActors" placeholder="Indroduzca los actores principales">Actores Principales</app-form-input>
+    <app-form-input name="director" [(ngModel)]="movie.director" placeholder="Indroduzca el director">Director</app-form-input>
+    <app-form-input-dropdown [(ngModel)]="movie.language" [list]="languages" name="language">Idioma</app-form-input-dropdown>
+
+    <div class="form-row">
+      <div class="col">
+        <label for="calification">Calicacion</label>
+        <select class="form-control" [(ngModel)]="movie.calification" name="calification" id="calification">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <app-form-input class="col" name="premiereDate" [(ngModel)]="movie.premiereDate" type="date">Fecha Estreno</app-form-input>
+    </div>
+
+    <app-form-input-image [posterImage]="posterImage" (onFileChangeEvent)="onFileChange($event)" name="image">Foto Portada</app-form-input-image>
+
+    <div class="form-group">
+      <app-button-save (onClickEvent)="onSave()" class="mr-2">Guardar </app-button-save>
+      <app-button-cancel  (onClickEvent)="onCancel()">Cancelar </app-button-cancel>
+    </div>
+  </form>
+</div>
+
+<app-loader [isLoading]="isLoading"></app-loader>

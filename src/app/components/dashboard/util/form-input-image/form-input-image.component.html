@@ -1,0 +1,14 @@
+<div class="form-group mt-3 row">
+  <div class="col-md-4">
+    <img [src]="posterImage.url" class="img-fluid img-thumbnail">
+  </div>
+  <div class="col-md-8">
+    <div class="form-group">
+      <label for="{{name}}"><ng-content></ng-content></label>
+      <div class="custom-file">
+        <input class="custom-file-input" type="file" id="{{name}}" name="{{name}}" accept="image/jpeg" (change)="onFileChange($event)" #fileInput/>
+        <label class="custom-file-label" for="{{name}}" >{{posterImage.name}}</label>
+      </div>
+    </div>
+  </div>
+</div>

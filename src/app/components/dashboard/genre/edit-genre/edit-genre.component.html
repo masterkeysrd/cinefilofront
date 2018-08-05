@@ -1,0 +1,11 @@
+<div>
+  <app-option-header title="Editar Genero"></app-option-header>
+  <form class="form">
+    <app-form-input [(ngModel)]="genre.name" type="text" name="name" placeholder="Ingresar el nombre">Nombre</app-form-input>
+
+    <div class="form-group">
+      <app-button-save (onClickEvent)="onSave()" class="mr-2">Guardar  </app-button-save>
+      <app-button-cancel (onClickEvent)="onCancel()">Cancelar </app-button-cancel>
+    </div>
+  </form>
+</div>

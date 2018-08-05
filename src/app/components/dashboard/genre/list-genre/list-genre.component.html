@@ -1,0 +1,27 @@
+<div class="container">
+
+  <app-option-header title="{{title}}">
+    <app-button-create routerLink="add">Crear Genero </app-button-create>
+  </app-option-header>
+
+  <br/>
+  <div>
+    <table class="table table-sm table-bordered table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th style="width: 88%">Nombre</th>
+        <th style="width: 7.5%"></th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let genre of genres">
+        <tr>
+          <td>{{genre.name}}</td>
+          <td>
+            <app-button-edit [routerLink]="['edit', genre.id]" class="mr-2"></app-button-edit>
+            <app-button-erase (onClickEvent)="onDelete(genre)"></app-button-erase>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

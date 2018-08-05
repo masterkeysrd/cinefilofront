@@ -1,0 +1,16 @@
+<app-option-header title="{{title}}"></app-option-header>
+
+<form class="form">
+  <app-form-input name="name" [(ngModel)]="language.name" placeholder="Indroduzca el nombre">Nombre</app-form-input>
+  <div>
+    <app-button-save (onClickEvent)="onSave()" class="mr-2">Guardar </app-button-save>
+    <app-button-cancel (onClickEvent)="onDelete()">Cancelar </app-button-cancel>
+  </div>
+</form>
+
+  <div class="alert alert-success" role="alerst" style="display: none">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You have been signed in successfully!
+  </div>

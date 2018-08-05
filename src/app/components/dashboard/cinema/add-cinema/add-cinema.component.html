@@ -1,0 +1,12 @@
+<app-option-header title="Crear Cine"></app-option-header>
+<form>
+  <app-form-input [(ngModel)]="cinema.name" type="text" name="name" placeholder="Ingresar el nombre">Nombre</app-form-input>
+  <app-text-area [(ngModel)]="cinema.description" name="description" placeholder="Ingresar la direccion">Descripcion</app-text-area>
+  <app-form-input [(ngModel)]="cinema.phone" type="phone" name="phone" placeholder="Ingresar telefono">Telefono</app-form-input>
+  <app-text-area [(ngModel)]="cinema.address" name="direction" placeholder="Ingresar la direccion">Direccion</app-text-area>
+  <div>
+    <app-button-save (onClickEvent)="onSave()">Guardar </app-button-save>
+    <app-button-cancel class="ml-3" (onClickEvent)="onCancel()">Cancelar </app-button-cancel>
+  </div>
+</form>
+
