@@ -47,6 +47,7 @@ import { ButtonBackComponent } from './components/dashboard/util/button-back/but
 import { IndexComponent } from './components/page/index/index.component';
 import { HeaderComponent } from './components/page/header/header.component';
 import { MovieGroupComponent } from './components/page/movie-group/movie-group.component';
+import { MovieDetailComponent } from './components/page/movie-detail/movie-detail.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { MovieGroupComponent } from './components/page/movie-group/movie-group.c
     ButtonBackComponent,
     IndexComponent,
     HeaderComponent,
-    MovieGroupComponent
+    MovieGroupComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,

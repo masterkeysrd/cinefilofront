@@ -21,6 +21,7 @@ import {AddShowComponent} from '../../components/dashboard/show/add-show/add-sho
 import {EditShowComponent} from '../../components/dashboard/show/edit-show/edit-show.component';
 import {ListShowComponent} from '../../components/dashboard/show/list-show/list-show.component';
 import {IndexComponent} from '../../components/page/index/index.component';
+import {MovieDetailComponent} from '../../components/page/movie-detail/movie-detail.component';
 
 const routes: Routes = [
   {path: 'dashboard/genre', component: ListGenreComponent},
@@ -42,6 +43,7 @@ const routes: Routes = [
   {path: 'dashboard/show', component: ListShowComponent},
   {path: 'dashboard/show/add', component: AddShowComponent},
   {path: 'dashboard/show/edit/:id', component: EditShowComponent},
+  {path: 'movie/:id', component: MovieDetailComponent},
   {path: 'index', component: IndexComponent}
 ];
 
