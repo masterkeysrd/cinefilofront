@@ -5,6 +5,10 @@ import {ActivatedRoute} from '@angular/router';
 import {UploadServiceService} from '../../../shared/services/upload-service.service';
 import {Genre} from '../../../shared/model/genre';
 import {Language} from '../../../shared/model/language';
+import {CinemaService} from '../../../shared/services/cinema.service';
+import {ShowService} from '../../../shared/services/show.service';
+import {Cinema} from '../../../shared/model/cinema';
+import {Show} from '../../../shared/model/show';
 
 @Component({
   selector: 'app-movie-detail',
@@ -14,9 +18,12 @@ import {Language} from '../../../shared/model/language';
 export class MovieDetailComponent implements OnInit {
 
   movie: Movie;
+  cinemas: Cinema[];
+  shows: Show[];
   urlImage: string;
 
-  constructor(private movieService: MovieService, private route: ActivatedRoute, private uploadService: UploadServiceService) {
+  constructor(private movieService: MovieService, private route: ActivatedRoute, private uploadService: UploadServiceService,
+              private cinemaService: CinemaService, private showService: ShowService) {
   }
 
   ngOnInit() {
@@ -29,6 +36,9 @@ export class MovieDetailComponent implements OnInit {
         if (this.movie.imageName != null) {
           this.urlImage = this.uploadService.getImageUrl(this.movie.imageName);
         }
+        this.cinemaService.getAll().subscribe( cinemas => {
+          this.cinemas = cinemas;
+        })
       });
     });
   }
