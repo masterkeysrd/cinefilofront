@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Movie} from '../../../shared/model/movie';
 import {MovieService} from '../../../shared/services/movie.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UploadServiceService} from '../../../shared/services/upload-service.service';
 import {Genre} from '../../../shared/model/genre';
 import {Language} from '../../../shared/model/language';
@@ -9,6 +9,7 @@ import {CinemaService} from '../../../shared/services/cinema.service';
 import {ShowService} from '../../../shared/services/show.service';
 import {Cinema} from '../../../shared/model/cinema';
 import {Show} from '../../../shared/model/show';
+import {CinemaShows} from '../../../shared/model/cinema-shows';
 
 @Component({
   selector: 'app-movie-detail',
@@ -18,12 +19,11 @@ import {Show} from '../../../shared/model/show';
 export class MovieDetailComponent implements OnInit {
 
   movie: Movie;
-  cinemas: Cinema[];
-  shows: Show[];
+  cinemas: any[];
   urlImage: string;
 
   constructor(private movieService: MovieService, private route: ActivatedRoute, private uploadService: UploadServiceService,
-              private cinemaService: CinemaService, private showService: ShowService) {
+              private cinemaService: CinemaService, private showService: ShowService, private router: Router) {
   }
 
   ngOnInit() {
@@ -38,9 +38,20 @@ export class MovieDetailComponent implements OnInit {
         }
         this.cinemaService.getAll().subscribe( cinemas => {
           this.cinemas = cinemas;
-        })
+        });
       });
     });
+    console.log(this.router.url);
+  }
+
+  getShows(cinemas: CinemaShows) {
+    this.showService.getByMovieandCinema(this.movie.id, cinemas.id, new Date()).subscribe(
+      data => {
+        cinemas.shows = data;
+        console.log(data);
+      }, error => {
+       console.log(error);
+      });
   }
 }
 

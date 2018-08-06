@@ -1,4 +1,4 @@
-<div class="row mt-5 ml-5">
+<div class="row mt-5 ml-5" style="margin-right: 1em;">
   <div class="col-md-4">
     <img [src]="urlImage" class="img-responsive">
   </div>
@@ -18,21 +18,41 @@
       <div id="cinemalist">
         <ng-container *ngFor="let c of cinemas">
           <div class="card">
-            <div class="card-header" id="cinemaHeading{{c.id}}">
+            <div class="card-header" id="headingcinema{{c.id}}">
               <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" attr.data-target="#collapseCinema{{c.id}}" aria-expanded="true" attr.aria-controls="#collapseCinema{{c.id}}">
+                <button class="btn btn-link" type="button" data-toggle="collapse" attr.data-target="#cinema{{c.id}}" aria-expanded="true"
+                        attr.aria-controls="cinema{{c.id}}" (click)="getShows(c)">
                   {{c.name}}
                 </button>
               </h5>
             </div>
 
-            <div id="#collapseCinema{{c.id}}" class="collapse show" attr.aria-labelledby="cinemaHeading{{c.id}}" data-parent="#cinemalist">
+            <div id="cinema{{c.id}}" class="collapse" attr.aria-labelledby="headingcinema{{c.id}}">
               <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Sala</th>
+                      <th>Fecha desde</th>
+                      <th>Fecha hasta</th>
+                      <th>Hora</th>
+                      <th>Costo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr  *ngFor="let s of c.shows">
+                      <th>{{s.room.name}}</th>
+                      <td>{{s.datefrom}}</td>
+                      <td>{{s.dateto}}</td>
+                      <td>{{s.startHour}}</td>
+                      <td>{{s.cost | currency}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-      </ng-container>
+        </ng-container>
     </div>
   </div>
 </div>

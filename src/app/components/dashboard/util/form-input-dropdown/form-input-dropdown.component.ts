@@ -19,6 +19,7 @@ export class FormInputDropdownComponent implements ControlValueAccessor {
   @Input() name: string;
   @Input() searchable: boolean;
   @Output() onCompareEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Input() disabled: boolean;
 
   private innerValue: any;
   private changed = new Array<(value: any) => void>();

@@ -9,6 +9,7 @@ export class Show {
   datefrom: Date;
   dateto: Date;
   startHour: Time;
+  cost: number;
 
 
   constructor(id: number, room: Room, movie: Movie, datefrom: Date, dateto: Date, startHour: Time) {

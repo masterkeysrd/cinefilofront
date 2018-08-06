@@ -1,6 +1,6 @@
 <div class="form-group">
   <label for="{{name}}"><ng-content></ng-content></label>
-  <select [compareWith]="byId" class="form-control" [(ngModel)]="value" name="{{name}}" id="{{name}}">
+  <select [compareWith]="byId" class="form-control" [(ngModel)]="value" name="{{name}}" id="{{name}}" [disabled]="disabled">
     <option *ngFor="let l of list" [ngValue]="l">{{l.name}}</option>
   </select>
 </div>

@@ -1,13 +1,17 @@
-<!--<app-dashboard-nav></app-dashboard-nav>
-<div class="container-fluid">
-  <div class="row">
-    <app-dashboard-sidebar></app-dashboard-sidebar>
-  </div>
-  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <router-outlet></router-outlet>
-  </main>
+<ng-container *ngIf="router.includes('dashboard')">
+  <app-dashboard-nav></app-dashboard-nav>
+  <div class="container-fluid">
+    <div class="row">
+      <app-dashboard-sidebar></app-dashboard-sidebar>
+    </div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <router-outlet></router-outlet>
+    </main>
 
-</div>
--->
-<app-page-header></app-page-header>
-<router-outlet></router-outlet>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!router.includes('dashboard')">
+  <app-page-header></app-page-header>
+  <router-outlet></router-outlet>
+</ng-container>

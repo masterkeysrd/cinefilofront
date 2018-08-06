@@ -1,3 +1,15 @@
-<p>
-  edit-show works!
-</p>
+<app-option-header title="Crear Funcion"></app-option-header>
+<form>
+  <app-form-input-dropdown name="cinema" [(ngModel)]="show.room.cinema" [list]="cimemas" (ngModelChange)="onCinemaChange($event)" [disabled]="true">Cine</app-form-input-dropdown>
+  <app-form-input-dropdown name="room" [(ngModel)]="show.room" [list]="rooms" [disabled]="true">Sala</app-form-input-dropdown>
+  <app-form-input-dropdown name="moive" [(ngModel)]="show.movie" [list]="movies">Pelicula</app-form-input-dropdown>
+  <app-form-input name="datefrom" [(ngModel)]="show.datefrom" type="date">Fecha Desde</app-form-input>
+  <app-form-input name="dateto" [(ngModel)]="show.dateto" type="date">Fecha Hasta</app-form-input>
+  <app-form-input name="startHour" [(ngModel)]="show.startHour" type="time">Hora Inicio</app-form-input>
+  <app-form-input name="cost" [(ngModel)]="show.cost" type="number">Costo</app-form-input>
+
+  <div>
+    <app-button-save class="mr-2" (onClickEvent)="onSave()">Guardar </app-button-save>
+    <app-button-cancel (onClickEvent)="onCancel()">Cancelar </app-button-cancel>
+  </div>
+</form>
