@@ -1,0 +1,60 @@
+<ng-content></ng-content>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="row">
+        <div style="height: 400px;" class="col-md-4">
+          <img class="h-75 mt-5" [src]="getMovieUrl(movies[0].imageName)" [alt]="movies[0].name">
+        </div>
+        <div class="col-md-8 movie-text">
+          <h2 class="mt-5">{{movies[0].name}}</h2>
+          <div class="row">
+            <p class="col-md-3"><b>Fecha Estreno: </b>  {{movies[0].premiereDate}}</p>
+            <p class="col-md-3"><b>Genero: </b>  {{movies[0].genre.name}}</p>
+            <p class="col-md-3"><b>Idioma: </b>  {{movies[0].language.name}}</p>
+            <p class="col-md-3"><b>Calificacion:</b>  {{movies[0].calification}}/5 <i class="fa fa-star" style="color: #ffd700"></i> </p>
+          </div>
+          <div class="">
+            <p>{{movies[0].synopsis}}</p>
+            <p><b>Director: </b>{{movies[0].director}} </p>
+            <p><b>Actores: </b> {{movies[0].mainActors}}</p>
+            <button class="btn btn-outline-primary mr-2" [routerLink]="['/movie/', movies[0].id]">Ver mas</button>
+            <button class="btn btn-outline-success">Ver Trailer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item" *ngFor="let m of movies">
+      <div class="row">
+        <div style="height: 400px;" class="col-md-4">
+          <img class="h-75 mt-5" [src]="getMovieUrl(m.imageName)" [alt]="m.name">
+        </div>
+        <div class="col-md-8 movie-text">
+          <h2 class="mt-5">{{m.name}}</h2>
+          <div class="row">
+            <p class="col-md-3"><b>Fecha Estreno: </b>  {{m.premiereDate}}</p>
+            <p class="col-md-3"><b>Genero: </b>  {{m.genre.name}}</p>
+            <p class="col-md-3"><b>Idioma: </b>  {{m.language.name}}</p>
+            <p class="col-md-3"><b>Calificacion:</b>  {{m.calification}}/5 <i class="fa fa-star" style="color: #ffd700"></i> </p>
+          </div>
+          <div class="">
+            <p>{{m.synopsis}}</p>
+            <p><b>Director: </b>{{m.director}} </p>
+            <p><b>Actores: </b> {{m.mainActors}}</p>
+            <button class="btn btn-outline-primary mr-2" [routerLink]="['/movie/', m.id]">Ver mas</button>
+            <button class="btn btn-outline-success">Ver Trailer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="carousel-control-prev" (click)="onNext()" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true" (click)="onNext()" ></span>
+    <span class="sr-only" (click)="onNext()" >Previous</span>
+  </a>
+  <a class="carousel-control-next" (click)="onBack()" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

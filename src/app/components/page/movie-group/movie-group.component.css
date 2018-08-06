@@ -1,0 +1,16 @@
+.carousel {
+  background-image: url("src/assets/img/salacine.jpg");
+  background-size: cover;
+}
+
+.carousel-item {
+  color: #fff;
+}
+
+img {
+  margin-left: 8rem!important;
+}
+
+.movie-text {
+  min-height: 250px;
+}
