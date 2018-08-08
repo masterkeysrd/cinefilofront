@@ -10,8 +10,12 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="!router.includes('dashboard')">
+<ng-container *ngIf="!router.includes('dashboard') && !router.includes('login')">
   <app-page-header></app-page-header>
   <router-outlet></router-outlet>
   <app-page-footer></app-page-footer>
+</ng-container>
+
+<ng-container *ngIf="router.includes('login')">
+  <router-outlet></router-outlet>
 </ng-container>

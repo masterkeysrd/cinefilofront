@@ -24,6 +24,7 @@ import {IndexComponent} from '../../components/page/index/index.component';
 import {MovieDetailComponent} from '../../components/page/movie-detail/movie-detail.component';
 import {PremiereComponent} from '../../components/page/premiere/premiere.component';
 import {BillboardComponent} from '../../components/page/billboard/billboard.component';
+import {LoginComponent} from '../../components/login/login.component';
 
 const routes: Routes = [
   {path: 'dashboard/genre', component: ListGenreComponent},
@@ -48,7 +49,8 @@ const routes: Routes = [
   {path: 'movie/:id', component: MovieDetailComponent},
   {path: 'premiere', component: PremiereComponent},
   {path: 'billboard', component: BillboardComponent},
-  {path: 'index', component: IndexComponent}
+  {path: 'index', component: IndexComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 const pageRoutes: Routes = [

@@ -53,6 +53,8 @@ import { MovieTailComponent } from './components/page/movie-tail/movie-tail.comp
 import { BillboardComponent } from './components/page/billboard/billboard.component';
 import { BillboardIndexComponent } from './components/page/billboard-index/billboard-index.component';
 import { FooterComponent } from './components/page/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
+import {StorageServiceModule} from 'angular-webstorage-service';
 
 @NgModule({
   declarations: [
@@ -100,14 +102,16 @@ import { FooterComponent } from './components/page/footer/footer.component';
     MovieTailComponent,
     BillboardComponent,
     BillboardIndexComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AngularFontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StorageServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
