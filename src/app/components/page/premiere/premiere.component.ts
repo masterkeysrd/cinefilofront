@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {MovieService} from '../../../shared/services/movie.service';
 import {Movie} from '../../../shared/model/movie';
+import {MovieService} from '../../../shared/services/movie.service';
 import {UploadServiceService} from '../../../shared/services/upload-service.service';
-import * as $ from 'jquery';
-declare var $: $;
 
 @Component({
-  selector: 'app-page-movie-group',
-  templateUrl: './movie-group.component.html',
-  styleUrls: ['./movie-group.component.css']
+  selector: 'app-premiere',
+  templateUrl: './premiere.component.html',
+  styleUrls: ['./premiere.component.css']
 })
-export class MovieGroupComponent implements OnInit {
+export class PremiereComponent implements OnInit {
 
-  movies: Movie[];
+  primeres: Movie[];
 
   constructor(private movieService: MovieService, private uploadService: UploadServiceService) { }
 
   ngOnInit() {
     this.movieService.getPremieres().subscribe( data => {
-      this.movies = data;
+      this.primeres = data;
     });
   }
 
@@ -26,11 +24,4 @@ export class MovieGroupComponent implements OnInit {
     return this.uploadService.getImageUrl(imagaName);
   }
 
-  onNext() {
-    $('#myCarousel').carousel('prev');
-  }
-
-  onBack() {
-      $('#myCarousel').carousel('next');
-  }
 }

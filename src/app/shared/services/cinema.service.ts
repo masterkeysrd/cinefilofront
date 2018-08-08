@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Genre} from '../model/genre';
 import {Cinema} from '../model/cinema';
@@ -17,11 +17,15 @@ export class CinemaService {
   }
 
   getById(id: number): Observable<Cinema> {
-    console.log(this.baseUrl + id);
-    this.http.get<Cinema>(this.baseUrl + id).subscribe(data => {
-      console.log(data);
-    });
     return this.http.get<Cinema>(this.baseUrl + id);
+  }
+
+  getWithShows(movie: number, date: Date): Observable<Cinema[]> {
+    let params = new HttpParams();
+    params = params.append('movie', movie.toString());
+    params = params.append('date', date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+
+    return this.http.get<Cinema[]>(this.baseUrl + '/shows', {params : params});
   }
 
   save(cinema: Cinema): void {

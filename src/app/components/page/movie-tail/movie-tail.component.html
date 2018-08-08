@@ -1,0 +1,12 @@
+<a class="card-link" [routerLink]="['/movie', movie.id]">
+  <div class="card">
+    <div class="card-header align-middle">
+      <h6>{{movie.name}}</h6>
+
+    </div>
+    <img [src]="getMovieUrl(movie.imageName)" [alt]="movie.name"/>
+    <div class="card-body">
+      <span class="col-8"><b>Fecha Estreno: </b>{{movie.premiereDate | date: 'dd/MM/yyyy'}}</span>
+    </div>
+  </div>
+</a>

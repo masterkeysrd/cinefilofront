@@ -15,6 +15,14 @@ export class MovieService {
     return this.http.get<Movie[]>(this.baseUrl);
   }
 
+  getPremieres(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.baseUrl + 'premieres');
+  }
+
+  getBillboard(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.baseUrl + 'billboard');
+  }
+
   getById(id: number): Observable<Movie> {
     console.log(this.baseUrl + id);
     this.http.get<Movie>(this.baseUrl + id).subscribe(data => {

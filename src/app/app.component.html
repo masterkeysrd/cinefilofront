@@ -7,11 +7,11 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <router-outlet></router-outlet>
     </main>
-
   </div>
 </ng-container>
 
 <ng-container *ngIf="!router.includes('dashboard')">
   <app-page-header></app-page-header>
   <router-outlet></router-outlet>
+  <app-page-footer></app-page-footer>
 </ng-container>

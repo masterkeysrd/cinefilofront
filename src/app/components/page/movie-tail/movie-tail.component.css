@@ -1,0 +1,39 @@
+.card {
+  border: 5px solid #CD0A0A;
+  border-radius: 0;
+}
+
+.card img {
+  height: 350px;
+}
+
+.card-header,
+.card-body {
+  background-color: #CD0A0A;
+  border-radius: 0;
+}
+
+.card-header {
+  height: 60px;
+}
+
+.card-body {
+  padding: 0.5em;
+}
+
+.card-link {
+  color: #ffffff;
+}
+
+
+.card-link:hover .card-header,
+.card-link:hover .card,
+.card-link:hover .card-body {
+  background-color: #ad001c;
+  border-color: #ad001c;
+}
+
+.premiere-img {
+  width: auto;
+  height: 350px;
+}

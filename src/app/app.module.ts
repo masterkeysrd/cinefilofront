@@ -48,6 +48,11 @@ import { IndexComponent } from './components/page/index/index.component';
 import { HeaderComponent } from './components/page/header/header.component';
 import { MovieGroupComponent } from './components/page/movie-group/movie-group.component';
 import { MovieDetailComponent } from './components/page/movie-detail/movie-detail.component';
+import { PremiereComponent } from './components/page/premiere/premiere.component';
+import { MovieTailComponent } from './components/page/movie-tail/movie-tail.component';
+import { BillboardComponent } from './components/page/billboard/billboard.component';
+import { BillboardIndexComponent } from './components/page/billboard-index/billboard-index.component';
+import { FooterComponent } from './components/page/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +95,12 @@ import { MovieDetailComponent } from './components/page/movie-detail/movie-detai
     IndexComponent,
     HeaderComponent,
     MovieGroupComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    PremiereComponent,
+    MovieTailComponent,
+    BillboardComponent,
+    BillboardIndexComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

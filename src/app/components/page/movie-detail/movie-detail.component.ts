@@ -36,21 +36,19 @@ export class MovieDetailComponent implements OnInit {
         if (this.movie.imageName != null) {
           this.urlImage = this.uploadService.getImageUrl(this.movie.imageName);
         }
-        this.cinemaService.getAll().subscribe( cinemas => {
+        this.cinemaService.getWithShows(this.movie.id, new Date()).subscribe( cinemas => {
           this.cinemas = cinemas;
+          console.log(cinemas);
         });
       });
     });
-    console.log(this.router.url);
   }
 
   getShows(cinemas: CinemaShows) {
     this.showService.getByMovieandCinema(this.movie.id, cinemas.id, new Date()).subscribe(
       data => {
         cinemas.shows = data;
-        console.log(data);
       }, error => {
-       console.log(error);
       });
   }
 }
