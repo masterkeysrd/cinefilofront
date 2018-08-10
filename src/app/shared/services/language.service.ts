@@ -23,39 +23,18 @@ export class LanguageService {
     return this.http.get<Language>(this.baseUrl + id);
   }
 
-  save(language: Language): void {
-    this.http.post(this.baseUrl, language)
-      .subscribe(
-        res => {
-          console.log('Language Save Done');
-        },
-        error => {
-          console.log('Error Saving Language');
-        }
-      );
+  save(language: Language): Observable<any> {
+    return this.http.post<any>(this.baseUrl, language);
   }
 
-  update(language: Language): void {
-    this.http.put(this.baseUrl, language)
-      .subscribe(
-        res => {
-          console.log('Language Update Done');
-        },
-        error => {
-          console.log('Error Updating Language');
-        } );
+  update(language: Language): Observable<any> {
+    return this.http.put(this.baseUrl, language);
   }
 
-  delete(language: Language) {
+  delete(language: Language): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: language
     };
-    this.http.delete(this.baseUrl, httpOptions)
-      .subscribe( res => {
-          console.log('Language Delete Done');
-        },
-        error => {
-          console.log('Error Deleting Language');
-        });
+    return this.http.delete(this.baseUrl, httpOptions);
   }
 }

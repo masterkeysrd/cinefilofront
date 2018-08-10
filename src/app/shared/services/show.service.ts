@@ -18,7 +18,6 @@ export class ShowService {
     params = params.append('movie', movie.toString());
     params = params.append('cinema', cinema.toString())
     params = params.append('date', date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
-    console.log(date.getDay() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
     return this.http.get<Show[]>(this.baseUrl, {params: params});
   }
 
@@ -26,15 +25,15 @@ export class ShowService {
     return this.http.get<Show[]>(this.baseUrl, {params: new HttpParams().set('movie', movie.toString())});
   }
 
+  getByCinema(cinema: number) {
+    return this.http.get<Show[]>(this.baseUrl, {params: new HttpParams().set('cinema', cinema.toString())});
+  }
+
   getAll(): Observable<Show[]> {
     return this.http.get<Show[]>(this.baseUrl);
   }
 
   getById(id: number): Observable<Show> {
-    console.log(this.baseUrl + id);
-    this.http.get<Show>(this.baseUrl + id).subscribe(data => {
-      console.log(data);
-    });
     return this.http.get<Show>(this.baseUrl + id);
   }
 
@@ -46,15 +45,13 @@ export class ShowService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: data
     };
-
-    return this.http.put(this.baseUrl, data, httpOptions);
+    return this.http.put<any>(this.baseUrl, data, httpOptions);
   }
 
   delete(data: Show): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: data
     };
-
-    return this.http.delete(this.baseUrl, httpOptions);
+    return this.http.delete<any>(this.baseUrl, httpOptions);
   }
 }

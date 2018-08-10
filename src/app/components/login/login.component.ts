@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 import {LocalStorageServiceService} from '../../shared/services/local-storage-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import {LocalStorageServiceService} from '../../shared/services/local-storage-se
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private location: Location, private localStorageService: LocalStorageServiceService) { }
+  constructor(private router: Router, private localStorageService: LocalStorageServiceService) { }
 
   ngOnInit() {
   }
@@ -24,7 +25,6 @@ export class LoginComponent implements OnInit {
   }
 
   onCancel() {
-    this.location.go('/index');
+    this.router.navigateByUrl('/index');
   }
-
 }

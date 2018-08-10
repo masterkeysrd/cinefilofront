@@ -10,6 +10,7 @@ import {Cinema} from '../../../../shared/model/cinema';
 export class ListCinemaComponent implements OnInit {
 
   cinemas: Cinema[];
+  selectedCinema: Cinema;
   isLoading: boolean;
 
   constructor(private cinemaService: CinemaService) {
@@ -24,8 +25,13 @@ export class ListCinemaComponent implements OnInit {
       });
   }
 
+  onSelect(selected: Cinema) {
+    this.selectedCinema = selected;
+  }
+
   onDelete(cinema: Cinema) {
-    this.cinemaService.delete(cinema);
-    this.cinemas.splice(this.cinemas.indexOf(cinema), 1);
+    this.cinemaService.delete(cinema).subscribe( success => {
+      this.cinemas.splice(this.cinemas.indexOf(cinema), 1);
+    });
   }
 }

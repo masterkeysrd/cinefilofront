@@ -17,7 +17,6 @@ export class LocalStorageServiceService {
     session.push(sessionData);
 
     this.storage.set(STORAGE_KEY, session);
-    console.log(this.storage.get(STORAGE_KEY));
   }
 
   public getOnLocalStorage(): any {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Cinema} from '../../../../shared/model/cinema';
 import {CinemaService} from '../../../../shared/services/cinema.service';
 import {Location} from '@angular/common';
+import {MessageService} from '../../../../shared/services/message.service';
 
 @Component({
   selector: 'app-dashboard-add-cinema',
@@ -12,7 +13,7 @@ export class AddCinemaComponent implements OnInit {
 
   cinema: Cinema;
 
-  constructor(private cinameService: CinemaService, private location: Location) {
+  constructor(private cinameService: CinemaService, private location: Location, private message: MessageService) {
     this.cinema = new Cinema(null, null, null, null, null);
   }
 
@@ -20,7 +21,15 @@ export class AddCinemaComponent implements OnInit {
   }
 
   onSave() {
-    this.cinameService.save(this.cinema);
+    this.cinameService.save(this.cinema).subscribe(
+      success => {
+        this.message.successMessage('Cine guardando sastifactoriamente');
+        this.cinema = new Cinema(null, null, null, null, null);
+      },
+      error => {
+        this.message.errorMessage('Error guardando cine' + error.toString());
+      }
+    );
   }
 
   onCancel() {

@@ -4,6 +4,7 @@ import {Cinema} from '../../../../shared/model/cinema';
 import {RoomService} from '../../../../shared/services/room.service';
 import {CinemaService} from '../../../../shared/services/cinema.service';
 import {Location} from '@angular/common';
+import {MessageService} from '../../../../shared/services/message.service';
 
 @Component({
   selector: 'app-add-room',
@@ -15,7 +16,8 @@ export class AddRoomComponent implements OnInit {
   room: Room;
   cinemas: Cinema[];
 
-  constructor(private roomService: RoomService, private cinemaService: CinemaService, private location: Location) {
+  constructor(private roomService: RoomService, private cinemaService: CinemaService, private location: Location,
+              private message: MessageService) {
     this.room = new Room(null, null, new Cinema(null, null, null, null, null));
   }
 
@@ -26,7 +28,15 @@ export class AddRoomComponent implements OnInit {
   }
 
   onSave() {
-    this.roomService.save(this.room).subscribe();
+    this.roomService.save(this.room).subscribe(
+      success => {
+        this.message.successMessage('Sala guardada sasstifactoriamente');
+        this.room = new Room(null, null, new Cinema(null, null, null, null, null));
+      },
+      error => {
+        this.message.errorMessage('Error al guardar la sala');
+      }
+    );
   }
 
   onCancel() {

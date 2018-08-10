@@ -15,46 +15,21 @@ export class GenreService {
   }
 
   getById(id: number): Observable<Genre> {
-    console.log(this.baseUrl + id);
-    this.http.get<Genre>(this.baseUrl + id).subscribe(data => {
-      console.log(data);
-    });
     return this.http.get<Genre>(this.baseUrl + id);
   }
 
-  save(genre: Genre): void {
-    this.http.post(this.baseUrl, genre)
-      .subscribe(
-        res => {
-          console.log('Genre Save Done');
-        },
-        error => {
-          console.log('Error Saving Error');
-        }
-      );
+  save(genre: Genre): Observable<any> {
+    return this.http.post(this.baseUrl, genre);
   }
 
-  update(genre: Genre): void {
-    this.http.put(this.baseUrl, genre)
-      .subscribe(
-        res => {
-        console.log('Genre Update Done');
-      },
-          error => {
-          console.log('Error Updating Genre');
-          } );
+  update(genre: Genre): Observable<any> {
+    return this.http.put(this.baseUrl, genre);
   }
 
-  delete(genre: Genre) {
+  delete(genre: Genre): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: genre
     };
-    this.http.delete(this.baseUrl, httpOptions)
-      .subscribe( res => {
-        console.log('Genre Delete Done');
-      },
-        error => {
-        console.log('Error Deleting Genre');
-        });
+    return this.http.delete<any>(this.baseUrl, httpOptions);
   }
 }

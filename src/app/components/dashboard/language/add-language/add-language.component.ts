@@ -4,6 +4,7 @@ import {Language} from '../../../../shared/model/language';
 
 import * as $ from 'jquery';
 import {Location} from '@angular/common';
+import {MessageService} from '../../../../shared/services/message.service';
 
 @Component({
   selector: 'app-add-language',
@@ -15,7 +16,7 @@ export class AddLanguageComponent implements OnInit {
   title: string;
   language: Language;
 
-  constructor(private languageServie: LanguageService, private location: Location) { }
+  constructor(private languageServie: LanguageService, private location: Location, private message: MessageService) { }
 
   ngOnInit() {
     this.title = 'Nuevo Idioma';
@@ -23,10 +24,13 @@ export class AddLanguageComponent implements OnInit {
   }
 
   onSave(): void {
-    this.languageServie.save(this.language);
-    $('.alert').fadeTo(2000, 500).slideUp(500, function() {
-      $('.alert').slideUp(500);
-    });
+    this.languageServie.save(this.language).subscribe( success => {
+      this.message.successMessage('Idioma guardado sastifactoriamente');
+      this.language = new Language(null, null);
+    },
+      error => {
+      this.message.errorMessage('Error al guardar Idioma ' + error.toString());
+      });
   }
 
   onCancel() {

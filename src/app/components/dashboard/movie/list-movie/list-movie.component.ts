@@ -11,6 +11,7 @@ export class ListMovieComponent implements OnInit {
 
   title = 'Peliculas';
   movies: Movie[];
+  selectedMovie: Movie;
   isLoading: boolean;
 
   constructor(private movieService: MovieService) {
@@ -24,8 +25,14 @@ export class ListMovieComponent implements OnInit {
     });
   }
 
+  onSelect(selected: Movie) {
+    this.selectedMovie = selected;
+  }
+
   onDelete(movie: Movie): void {
-    return;
+    this.movieService.delete(movie).subscribe( success => {
+      this.movies.splice(this.movies.indexOf(movie, 1));
+    });
   }
 
 }

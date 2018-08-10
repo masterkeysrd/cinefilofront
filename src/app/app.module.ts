@@ -55,6 +55,8 @@ import { BillboardIndexComponent } from './components/page/billboard-index/billb
 import { FooterComponent } from './components/page/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import {StorageServiceModule} from 'angular-webstorage-service';
+import { DialogModalComponent } from './components/dashboard/util/dialog-modal/dialog-modal.component';
+import { CinemaComponent } from './components/page/cinema/cinema.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,9 @@ import {StorageServiceModule} from 'angular-webstorage-service';
     BillboardComponent,
     BillboardIndexComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    DialogModalComponent,
+    CinemaComponent
   ],
   imports: [
     BrowserModule,

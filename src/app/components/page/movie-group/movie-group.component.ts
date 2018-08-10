@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
 import {MovieService} from '../../../shared/services/movie.service';
 import {Movie} from '../../../shared/model/movie';
 import {UploadServiceService} from '../../../shared/services/upload-service.service';
@@ -14,12 +14,15 @@ export class MovieGroupComponent implements OnInit {
 
   movies: Movie[];
 
-  constructor(private movieService: MovieService, private uploadService: UploadServiceService) { }
+  constructor(private movieService: MovieService, private uploadService: UploadServiceService) {
+    this.movies = new Array();
+  }
 
   ngOnInit() {
     this.movieService.getPremieres().subscribe( data => {
       this.movies = data;
     });
+    $('#movie' + this.movies[0].id).addClass('active');
   }
 
   getMovieUrl(imagaName: string): string {

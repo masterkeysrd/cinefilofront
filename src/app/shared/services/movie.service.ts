@@ -24,55 +24,24 @@ export class MovieService {
   }
 
   getById(id: number): Observable<Movie> {
-    console.log(this.baseUrl + id);
-    this.http.get<Movie>(this.baseUrl + id).subscribe(data => {
-      console.log(data);
-    });
     return this.http.get<Movie>(this.baseUrl + id);
   }
 
-  save(movie: Movie): void {
-    this.http.post(this.baseUrl, movie)
-      .subscribe(
-        res => {
-          console.log('Movie Save Done');
-        },
-        error => {
-          console.log('Error Saving Movie');
-          console.log(movie);
-          console.log(movie.language);
-          console.log(movie.genre);
-        }
-      );
+  save(movie: Movie): Observable<any> {
+    return this.http.post<any>(this.baseUrl, movie);
   }
 
-  update(movie: Movie): void {
+  update(movie: Movie): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: movie
     };
-    this.http.put(this.baseUrl, movie, httpOptions)
-      .subscribe(
-        res => {
-          console.log('Movie Update Done');
-        },
-        error => {
-          console.log('Error Updating Movie');
-          console.log(movie);
-          console.log(movie.language);
-          console.log(movie.genre);
-        } );
+    return this.http.put<any>(this.baseUrl, movie, httpOptions);
   }
 
-  delete(movie: Movie) {
+  delete(movie: Movie): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: movie
     };
-    this.http.delete(this.baseUrl, httpOptions)
-      .subscribe( res => {
-          console.log('Movie Delete Done');
-        },
-        error => {
-          console.log('Error Deleting Movie');
-        });
+    return this.http.delete(this.baseUrl, httpOptions);
   }
 }

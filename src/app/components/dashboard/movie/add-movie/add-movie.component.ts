@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {PosterImage} from '../../../../shared/model/poster-image';
 import {UploadServiceService} from '../../../../shared/services/upload-service.service';
+import {MessageService} from '../../../../shared/services/message.service';
 
 @Component({
   selector: 'app-add-movie',
@@ -25,17 +26,25 @@ export class AddMovieComponent implements OnInit {
   imageChage: boolean;
   isLoading: boolean;
 
-  constructor(private movieSerive: MovieService, private genreService: GenreService, private languageService: LanguageService,
-              private location: Location, private uploadService: UploadServiceService) { }
+  constructor(private movieService: MovieService, private genreService: GenreService, private languageService: LanguageService,
+              private location: Location, private uploadService: UploadServiceService, private message: MessageService) { }
 
   ngOnInit() {
     this.posterImage = new PosterImage('Eligir Imagen', 0, 'assets/img/img-empty.png');
     this.movie = new Movie(null, null, null, null, null, null,  null, new Genre(null, null), new Language(null, null), null);
-    this.genreService.getAll().subscribe(data => {
-      this.genres = data;
-    });
-    this.languageService.getAll().subscribe( data => {
+    this.genreService.getAll().subscribe(
+      data => {
+        this.genres = data;
+    },
+      error => {
+        this.message.errorMessage('Error obteniendo generos. ' + error.toString());
+      });
+    this.languageService.getAll().subscribe(
+      data => {
         this.languages = data;
+      },
+      error => {
+        this.message.errorMessage('Error obteniendo idiomas. ' + error.toString());
       });
   }
 
@@ -45,10 +54,28 @@ export class AddMovieComponent implements OnInit {
         .subscribe( data => {
           this.posterImage = data;
           this.movie.imageName = this.posterImage.name;
-          this.movieSerive.save(this.movie);
-        });
+          this.movieService.save(this.movie).subscribe(
+            sucess => {
+              this.message.successMessage('Pelicula guardada sastifactoriamente');
+              this.posterImage = new PosterImage('Eligir Imagen', 0, 'assets/img/img-empty.png');
+              this.movie = new Movie(null, null, null, null, null, null,  null, new Genre(null, null), new Language(null, null), null);
+            },
+            error => {
+              this.message.errorMessage('Error al guardar pelicula.' + error.toString());
+            }
+          );
+            this.message.successMessage('Pelicula guardada sastifactoriamente');
+        },
+          error => {
+          this.message.errorMessage('Error subiendo imagen. ' + error.toString());
+          });
     } else {
-      this.movieSerive.save(this.movie);
+      this.movieService.save(this.movie).subscribe(
+        success => {
+          this.message.successMessage('Pelicula guardad sastifactoriamente');
+          this.posterImage = new PosterImage('Eligir Imagen', 0, 'assets/img/img-empty.png');
+          this.movie = new Movie(null, null, null, null, null, null,  null, new Genre(null, null), new Language(null, null), null);
+        });
     }
   }
 

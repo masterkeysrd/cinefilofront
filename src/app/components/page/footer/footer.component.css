@@ -1,7 +1,20 @@
 footer {
   background-color: #34495e;
+  display: block;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 
 footer h1 {
   margin: 0 !important;
+}
+
+.text-muted {
+  margin: 0 auto;
+  width: 500px;
+  display: block;
+  text-align: center;
+  color: #fff !important;
+  padding: 10px;
 }

@@ -1,0 +1,18 @@
+.card {
+  border-radius: 0px;
+}
+
+.card-header{
+  padding: 0px;
+}
+
+.card-header .btn-link {
+  color: #CD0A0A;
+}
+
+.card-header .btn-link:hover,
+.card-header .btn-link:active,
+.card-header .btn-link:focus
+{
+  text-decoration: none;
+}

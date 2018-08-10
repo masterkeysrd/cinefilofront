@@ -28,40 +28,18 @@ export class CinemaService {
     return this.http.get<Cinema[]>(this.baseUrl + '/shows', {params : params});
   }
 
-  save(cinema: Cinema): void {
-    this.http.post(this.baseUrl, cinema)
-      .subscribe(
-        res => {
-          console.log('Cinema Save Done');
-        },
-        error => {
-          console.log('Error Saving Cinema');
-          console.log(cinema);
-        }
-      );
+  save(cinema: Cinema): Observable<any> {
+    return this.http.post(this.baseUrl, cinema);
   }
 
-  update(cinema: Cinema): void {
-    this.http.put(this.baseUrl, cinema)
-      .subscribe(
-        res => {
-          console.log('Cinema Update Done');
-        },
-        error => {
-          console.log('Error Updating Cinema');
-        } );
+  update(cinema: Cinema): Observable<any>  {
+    return this.http.put<any>(this.baseUrl, cinema);
   }
 
-  delete(cinema: Cinema) {
+  delete(cinema: Cinema): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: cinema
     };
-    this.http.delete(this.baseUrl, httpOptions)
-      .subscribe( res => {
-          console.log('Cinema Delete Done');
-        },
-        error => {
-          console.log('Error Deleting Cinema');
-        });
+    return this.http.delete<any>(this.baseUrl, httpOptions);
   }
 }

@@ -20,10 +20,14 @@
       <td>{{c.address}}</td>
       <td>
         <app-button-edit class="mr-1" [routerLink]="['edit', c.id]"></app-button-edit>
-        <app-button-erase (onClickEvent)="onDelete(c)"></app-button-erase>
+        <app-button-erase data-toggle="modal" data-target="#cinemaWarning" (onClickEvent)="onSelect(c)"></app-button-erase>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
 <app-loader [isLoading]="isLoading"></app-loader>
+
+<app-dialog-modal title="Advertencia" name="cinemaWarning" (onSave)="onDelete(selectedCinema)">
+  Esta seguro de borrar este Cine?
+</app-dialog-modal>

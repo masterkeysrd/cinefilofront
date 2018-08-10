@@ -1,6 +1,6 @@
 <div *ngIf="!isLoading">
   <app-option-header title="{{title}}">
-    <button class="btn btn-outline-primary" routerLink="add">Nueva {{title}} <i class="fa fa-plus"></i></button>
+    <app-button-create routerLink="add">Nueva {{title}} </app-button-create>
   </app-option-header>
 
 
@@ -15,20 +15,23 @@
       <th class="align-middle" scope="col" style="width: 10.5%"></th>
     </tr>
     </thead>
-    <tbody *ngFor="let movie of movies">
+    <tbody *ngFor="let m of movies">
     <tr>
-      <td>{{movie.name}}</td>
-      <td>{{movie.genre.name}}</td>
-      <td>{{movie.language.name}}</td>
-      <td>{{movie.director}}</td>
-      <td>{{movie.premiereDate}}</td>
+      <td>{{m.name}}</td>
+      <td>{{m.genre.name}}</td>
+      <td>{{m.language.name}}</td>
+      <td>{{m.director}}</td>
+      <td>{{m.premiereDate}}</td>
       <td>
-        <app-button-view [routerLink]="['view', movie.id]" class="mr-1"></app-button-view>
-        <app-button-edit [routerLink]="['edit', movie.id]" class="mr-1"></app-button-edit>
-        <app-button-erase (click)="onDelete(movie)"></app-button-erase>
+        <app-button-view [routerLink]="['view', m.id]" class="mr-1"></app-button-view>
+        <app-button-edit [routerLink]="['edit', m.id]" class="mr-1"></app-button-edit>
+        <app-button-erase data-toggle="modal" data-target="#movieWarning" (onClickEvent)="onSelect(m)"></app-button-erase>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
 <app-loader [isLoading]="isLoading"></app-loader>
+<app-dialog-modal title="Advertencia" name="movieWarning" (onSave)="onDelete(selectedMovie)">
+  Esta seguro de borrar esta Pelicula?
+</app-dialog-modal>

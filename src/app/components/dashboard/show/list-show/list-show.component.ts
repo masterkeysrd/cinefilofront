@@ -10,6 +10,7 @@ import {ShowService} from '../../../../shared/services/show.service';
 export class ListShowComponent implements OnInit {
 
   shows: Show[];
+  selectedShow: Show;
   isLoading: boolean;
 
   constructor(private showsService: ShowService) {
@@ -23,8 +24,13 @@ export class ListShowComponent implements OnInit {
     });
   }
 
+  onSelect(show: Show) {
+    this.selectedShow = show;
+  }
+
   onDelete(show: Show) {
     this.showsService.delete(show).subscribe();
+    this.shows.splice(this.shows.indexOf(show), 1);
   }
 
 }

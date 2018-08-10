@@ -1,0 +1,43 @@
+<div class="p-3 mb-5">
+  <div id="cinemalist">
+    <ng-container *ngFor="let c of cinemas">
+      <div class="card">
+        <div class="card-header" id="headingcinema{{c.id}}">
+          <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" attr.data-target="#cinema{{c.id}}" aria-expanded="true"
+                    attr.aria-controls="cinema{{c.id}}" (click)="getShows(c)">
+              <h6> <i class="fa fa-film"></i> {{c.name}} <i class="fa fa-chevron-down fa-1x"></i> </h6>
+            </button>
+          </h5>
+        </div>
+
+        <div id="cinema{{c.id}}" class="collapse" attr.aria-labelledby="headingcinema{{c.id}}">
+          <div class="card-body">
+            <table class="table table-sm">
+              <thead>
+              <tr>
+                <th>Pelicula</th>
+                <th>Sala</th>
+                <th>Fecha desde</th>
+                <th>Fecha hasta</th>
+                <th>Hora</th>
+                <th>Costo</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr  *ngFor="let s of c.shows">
+                <th>{{s.movie.name}}</th>
+                <td>{{s.room.name}}</td>
+                <td>{{s.datefrom | date: 'dd/MM/yyyy' }}</td>
+                <td>{{s.dateto | date: 'dd/MM/yyyy' }}</td>
+                <td>{{s.startHour}}</td>
+                <td>{{s.cost | currency}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import {ListGenreComponent} from '../../components/dashboard/genre/list-genre/list-genre.component';
 import {AddGenreComponent} from '../../components/dashboard/genre/add-genre/add-genre.component';
@@ -25,6 +24,7 @@ import {MovieDetailComponent} from '../../components/page/movie-detail/movie-det
 import {PremiereComponent} from '../../components/page/premiere/premiere.component';
 import {BillboardComponent} from '../../components/page/billboard/billboard.component';
 import {LoginComponent} from '../../components/login/login.component';
+import {CinemaComponent} from '../../components/page/cinema/cinema.component';
 
 const routes: Routes = [
   {path: 'dashboard/genre', component: ListGenreComponent},
@@ -49,6 +49,7 @@ const routes: Routes = [
   {path: 'movie/:id', component: MovieDetailComponent},
   {path: 'premiere', component: PremiereComponent},
   {path: 'billboard', component: BillboardComponent},
+  {path: 'cinema', component: CinemaComponent},
   {path: 'index', component: IndexComponent},
   {path: 'login', component: LoginComponent}
 ];

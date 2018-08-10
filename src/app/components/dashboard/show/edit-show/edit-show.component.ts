@@ -8,6 +8,8 @@ import {Movie} from '../../../../shared/model/movie';
 import {CinemaService} from '../../../../shared/services/cinema.service';
 import {MovieService} from '../../../../shared/services/movie.service';
 import {RoomService} from '../../../../shared/services/room.service';
+import {MessageService} from '../../../../shared/services/message.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-edit-show',
@@ -23,7 +25,8 @@ export class EditShowComponent implements OnInit {
   isLoading: boolean;
 
   constructor(private route: ActivatedRoute, private showService: ShowService, private cinemaService: CinemaService,
-              private movieService: MovieService, private roomService: RoomService) {
+              private movieService: MovieService, private roomService: RoomService, private message: MessageService,
+              private location: Location) {
     this.show = new Show(null,
       new Room(null, null,
         new Cinema(null, null, null, null, null)),
@@ -37,6 +40,7 @@ export class EditShowComponent implements OnInit {
       this.rooms = rooms.filter(x => x.cinema.id === this.show.room.cinema.id);
     });
   }
+
   ngOnInit() {
     this.cinemaService.getAll().subscribe( cinemas => {
       this.cimemas = cinemas;
@@ -51,6 +55,20 @@ export class EditShowComponent implements OnInit {
         this.onCinemaChange();
       });
     });
+  }
+
+  onSave() {
+    this.showService.update(this.show).subscribe(
+      success => {
+        this.message.successMessage('Funcion actualizada sastifactoriamente');
+      },
+      error => {
+        this.message.errorMessage('Error al actualizar funcion.' + error.toString());
+      });
+  }
+
+  onCancel() {
+    this.location.back();
   }
 
 }

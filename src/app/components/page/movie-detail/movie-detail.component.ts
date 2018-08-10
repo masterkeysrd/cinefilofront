@@ -38,7 +38,6 @@ export class MovieDetailComponent implements OnInit {
         }
         this.cinemaService.getWithShows(this.movie.id, new Date()).subscribe( cinemas => {
           this.cinemas = cinemas;
-          console.log(cinemas);
         });
       });
     });

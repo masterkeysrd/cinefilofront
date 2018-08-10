@@ -1,6 +1,6 @@
 <div *ngIf="!isLoading">
   <app-option-header title="{{title}}">
-    <button class="btn btn-outline-primary" routerLink="add">Nueva {{title}} <i class="fa fa-plus"></i></button>
+    <app-button-create routerLink="add">Nueva {{title}} </app-button-create>
   </app-option-header>
 
 
@@ -8,8 +8,8 @@
     <thead class="thead-dark">
     <tr>
       <th class="align-middle" scope="col" style="width: 40%">Cine</th>
-      <th class="align-middle" scope="col" style="width: 40%">Descripcion</th>
-      <th class="align-middle" scope="col" style="width: 10.5%"></th>
+      <th class="align-middle" scope="col" style="width: 50%">Descripcion</th>
+      <th class="align-middle" scope="col" style="width: 7.5%"></th>
     </tr>
     </thead>
     <tbody *ngFor="let r of rooms">
@@ -17,12 +17,15 @@
       <td>{{r.cinema.name}}</td>
       <td>{{r.name}}</td>
       <td>
-        <app-button-view [routerLink]="['view', r.id]" class="mr-1"></app-button-view>
         <app-button-edit [routerLink]="['edit', r.id]" class="mr-1"></app-button-edit>
-        <app-button-erase (click)="onDelete(r)"></app-button-erase>
+        <app-button-erase data-toggle="modal" data-target="#roomWarning" (onClickEvent)="onSelect(r)"></app-button-erase>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
 <app-loader [isLoading]="isLoading"></app-loader>
+
+<app-dialog-modal title="Advertencia" name="roomWarning" (onSave)="onDelete(selectedRoom)">
+  Esta seguro de borrar esta sala?
+</app-dialog-modal>

@@ -3,6 +3,7 @@ import {Cinema} from '../../../../shared/model/cinema';
 import {CinemaService} from '../../../../shared/services/cinema.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+import {MessageService} from '../../../../shared/services/message.service';
 
 @Component({
   selector: 'app-edit-cinema',
@@ -13,7 +14,7 @@ export class EditCinemaComponent implements OnInit {
 
   cinema: Cinema;
 
-  constructor(private cinemaService: CinemaService, private location: Location, private route: ActivatedRoute) {
+  constructor(private cinemaService: CinemaService, private location: Location, private route: ActivatedRoute, private mssage: MessageService) {
     this.cinema = new Cinema(null, null, null, null, null);
   }
 
@@ -26,7 +27,14 @@ export class EditCinemaComponent implements OnInit {
   }
 
   onSave() {
-    this.cinemaService.update(this.cinema);
+    this.cinemaService.update(this.cinema).subscribe(
+      success => {
+        this.mssage.successMessage('Cine actualizado sastifactoriamente. ');
+      },
+      error => {
+        this.mssage.errorMessage('Error al actualizar cine. ' + error.toString());
+      }
+    );
   }
 
   onCancel() {

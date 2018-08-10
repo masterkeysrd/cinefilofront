@@ -4,6 +4,7 @@ import {GenreService} from '../../../../shared/services/genre.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as $ from 'jquery';
 import {Location} from '@angular/common';
+import {MessageService} from '../../../../shared/services/message.service';
 
 @Component({
   selector: 'app-edit-genre',
@@ -14,7 +15,8 @@ export class EditGenreComponent implements OnInit {
 
   title: string;
   genre: Genre;
-  constructor(private genreSerive: GenreService, private route: ActivatedRoute, private location: Location) {
+  constructor(private genreSerive: GenreService, private route: ActivatedRoute, private location: Location,
+              private message: MessageService) {
     this.genre = new Genre(0, null);
   }
 
@@ -23,15 +25,20 @@ export class EditGenreComponent implements OnInit {
       this.genreSerive.getById(params['id'])
         .subscribe(data => {
           this.genre = data;
-        });
+        },
+          error => {
+            this.message.errorMessage('Error obteniendo genero.');
+          });
     });
   }
 
   onSave() {
-    this.genreSerive.update(this.genre);
-    $('.alert').fadeTo(2000, 500).slideUp(500, function() {
-      $('.alert').slideUp(500);
-    });
+    this.genreSerive.update(this.genre).subscribe( success => {
+        this.message.successMessage('Genero actualizado sastifactoriamente.');
+    },
+      error => {
+        this.message.errorMessage('Error actualizando genero.');
+      });
   }
 
   onCancel() {

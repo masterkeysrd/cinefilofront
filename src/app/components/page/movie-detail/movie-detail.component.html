@@ -42,8 +42,8 @@
                   <tbody>
                     <tr  *ngFor="let s of c.shows">
                       <th>{{s.room.name}}</th>
-                      <td>{{s.datefrom}}</td>
-                      <td>{{s.dateto}}</td>
+                      <td>{{s.datefrom | date: 'dd/MM/yyyy' }}</td>
+                      <td>{{s.dateto | date: 'dd/MM/yyyy' }}</td>
                       <td>{{s.startHour}}</td>
                       <td>{{s.cost | currency}}</td>
                     </tr>

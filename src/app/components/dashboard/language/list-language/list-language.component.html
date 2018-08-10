@@ -12,12 +12,12 @@
     <th style="width: 7.5%"></th>
   </tr>
   </thead>
-  <tbody *ngFor="let language of languages">
+  <tbody *ngFor="let l of languages">
   <tr>
-    <td>{{language.name}}</td>
+    <td>{{l.name}}</td>
     <td>
-      <app-button-edit [routerLink]="['edit', language.id]" class="mr-2"></app-button-edit>
-      <app-button-erase (onClickEvent)="onDelete(language)"></app-button-erase>
+      <app-button-edit [routerLink]="['edit', l.id]" class="mr-2"></app-button-edit>
+      <app-button-erase data-toggle="modal" data-target="#languageWarning" (onClickEvent)="onSelect(l)"></app-button-erase>
     </td>
   </tr>
   </tbody>
@@ -25,3 +25,7 @@
 </div>
 
 <app-loader [isLoading]="isLoading"></app-loader>
+
+<app-dialog-modal title="Advertencia" name="languageWarning" (onSave)="onDelete(seletedLanguage)">
+  Esta seguro de borrar este lenguaje?
+</app-dialog-modal>
