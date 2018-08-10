@@ -51,7 +51,8 @@ const routes: Routes = [
   {path: 'billboard', component: BillboardComponent},
   {path: 'cinema', component: CinemaComponent},
   {path: 'index', component: IndexComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: '', redirectTo: 'index', pathMatch: 'full'}
 ];
 
 const pageRoutes: Routes = [
