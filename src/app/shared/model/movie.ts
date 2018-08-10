@@ -12,9 +12,10 @@ export class Movie {
   genre: Genre;
   language: Language;
   imageName: string;
+  trailerUrl: string;
 
-  constructor(id: number, title: number, calification: string, director: number,
-              premiereDate: Date, mainActors: string, synopsis: string, genre: Genre, language: Language, imageName: string) {
+  constructor(id: number, title: number, calification: string, director: number, premiereDate: Date, mainActors: string,
+              synopsis: string, genre: Genre, language: Language, imageName: string, trailerUrl: string) {
     this.id = id;
     this.name = title;
     this.calification = director;
@@ -25,5 +26,6 @@ export class Movie {
     this.genre = genre;
     this.language = language;
     this.imageName = imageName;
+    this.trailerUrl = trailerUrl;
   }
 }

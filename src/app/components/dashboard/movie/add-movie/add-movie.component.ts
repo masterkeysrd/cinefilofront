@@ -31,7 +31,8 @@ export class AddMovieComponent implements OnInit {
 
   ngOnInit() {
     this.posterImage = new PosterImage('Eligir Imagen', 0, 'assets/img/img-empty.png');
-    this.movie = new Movie(null, null, null, null, null, null,  null, new Genre(null, null), new Language(null, null), null);
+    this.movie = new Movie(null, null, null, null, null, null,  null,
+      new Genre(null, null), new Language(null, null), null, null);
     this.genreService.getAll().subscribe(
       data => {
         this.genres = data;
@@ -58,7 +59,8 @@ export class AddMovieComponent implements OnInit {
             sucess => {
               this.message.successMessage('Pelicula guardada sastifactoriamente');
               this.posterImage = new PosterImage('Eligir Imagen', 0, 'assets/img/img-empty.png');
-              this.movie = new Movie(null, null, null, null, null, null,  null, new Genre(null, null), new Language(null, null), null);
+              this.movie = new Movie(null, null, null, null, null, null,  null,
+                new Genre(null, null), new Language(null, null), null, null);
             },
             error => {
               this.message.errorMessage('Error al guardar pelicula.' + error.toString());
@@ -74,7 +76,8 @@ export class AddMovieComponent implements OnInit {
         success => {
           this.message.successMessage('Pelicula guardad sastifactoriamente');
           this.posterImage = new PosterImage('Eligir Imagen', 0, 'assets/img/img-empty.png');
-          this.movie = new Movie(null, null, null, null, null, null,  null, new Genre(null, null), new Language(null, null), null);
+          this.movie = new Movie(null, null, null, null, null, null,  null,
+            new Genre(null, null), new Language(null, null), null, null);
         });
     }
   }

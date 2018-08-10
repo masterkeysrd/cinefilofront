@@ -21,7 +21,7 @@
       <td>{{m.genre.name}}</td>
       <td>{{m.language.name}}</td>
       <td>{{m.director}}</td>
-      <td>{{m.premiereDate}}</td>
+      <td>{{m.premiereDate | date: 'dd/MM/yyyy'}}</td>
       <td>
         <app-button-view [routerLink]="['view', m.id]" class="mr-1"></app-button-view>
         <app-button-edit [routerLink]="['edit', m.id]" class="mr-1"></app-button-edit>

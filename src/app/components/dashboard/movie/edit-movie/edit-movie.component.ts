@@ -9,6 +9,7 @@ import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {PosterImage} from '../../../../shared/model/poster-image';
 import {UploadServiceService} from '../../../../shared/services/upload-service.service';
+import {MessageService} from '../../../../shared/services/message.service';
 
 @Component({
   selector: 'app-edit-movie',
@@ -27,11 +28,12 @@ export class EditMovieComponent implements OnInit {
   isLoading: boolean;
 
   constructor(private movieService: MovieService, private genreService: GenreService, private languageService: LanguageService,
-              private location: Location, private route: ActivatedRoute, private uploadService: UploadServiceService) {
+              private location: Location, private route: ActivatedRoute, private uploadService: UploadServiceService,
+              private  message: MessageService) {
     this.isLoading = true;
     this.posterImage = new PosterImage('Eligir Imagen', 0, 'assets/img/img-empty.png');
-    this.movie = new Movie(null, null, null, null, null, null,  null, new Genre(null, null),
-      new Language(null, null), null);
+    this.movie = new Movie(null, null, null, null, null, null,  null,
+      new Genre(null, null), new Language(null, null), null, null);
   }
 
   ngOnInit() {
@@ -62,7 +64,13 @@ export class EditMovieComponent implements OnInit {
           this.movieService.update(this.movie);
         });
     } else {
-      this.movieService.update(this.movie);
+      this.movieService.update(this.movie)
+        .subscribe( success => {
+          this.message.successMessage('Pelicula actualizada sastifactoriamente.');
+          },
+          error => {
+          this.message.errorMessage('Error al actualizar pelicula. ' + error.toString());
+          });
     }
   }
   onCancel() {

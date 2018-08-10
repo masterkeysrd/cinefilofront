@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mt-2">
   <div class="col-md-12 mb-3">
     <app-button-back (onClickEvent)="onBack()"></app-button-back>
   </div>
@@ -8,7 +8,7 @@
   <div class="col-md-8">
     <h2>{{movie.name}}</h2>
     <div class="row">
-      <p class="col-md-3"><b>Fecha Estreno: </b>  {{movie.premiereDate}}</p>
+      <p class="col-md-3"><b>Fecha Estreno: </b>  {{movie.premiereDate | date: 'dd/MM/yyyy'}}</p>
       <p class="col-md-3"><b>Genero: </b>  {{movie.genre.name}}</p>
       <p class="col-md-3"><b>Idioma: </b>  {{movie.language.name}}</p>
       <p class="col-md-3"><b>Calificacion:</b>  {{movie.calification}}/5 <i class="fa fa-star" style="color: #ffd700"></i> </p>
@@ -19,5 +19,10 @@
       <p><b>Director: </b>{{movie.director}} </p>
       <p><b>Actores: </b> {{movie.mainActors}}</p>
     </div>
+  </div>
+  <div class="col-md-12 mt-3" *ngIf="movie.trailerUrl != null">
+    <h1>Trailer</h1>
+    <iframe width="560" height="315" [src]="trailerURL()"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 </div>

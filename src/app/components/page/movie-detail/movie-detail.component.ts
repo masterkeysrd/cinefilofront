@@ -28,7 +28,7 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit() {
     this.movie = new Movie(null, null, null, null, null, null,
-      null, new Genre(null, null), new Language(null, null), null);
+      null, new Genre(null, null), new Language(null, null), null, null);
     this.urlImage = 'assets/img/img-empty.png'
     this.route.params.subscribe(params => {
       this.movieService.getById(params['id']).subscribe(data => {

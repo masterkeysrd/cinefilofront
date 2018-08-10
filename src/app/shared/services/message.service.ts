@@ -18,7 +18,7 @@ export class MessageService {
     }, {
       // settings
       type: 'success',
-      position: 'absolute',
+      position: 'fixed',
       delay: '1000',
       placement : {
         from: 'bottom'
@@ -33,7 +33,7 @@ export class MessageService {
     }, {
       // settings
       type: 'danger',
-      position: 'absolute',
+      position: 'fixed',
       delay: '1000',
       placement : {
         from: 'bottom'

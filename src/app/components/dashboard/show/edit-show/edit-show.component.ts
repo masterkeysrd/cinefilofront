@@ -30,8 +30,8 @@ export class EditShowComponent implements OnInit {
     this.show = new Show(null,
       new Room(null, null,
         new Cinema(null, null, null, null, null)),
-      new Movie(null, null, null, null, null, null, null, null, null, null),
-      null, null, null);
+      new Movie(null, null, null, null, null, null, null, null,
+        null, null, null), null, null, null);
     this.isLoading = true;
   }
 
